@@ -1,0 +1,114 @@
+.invoice-homepage-container {
+    width: 100%;
+    height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
+}
+
+.invoice-page-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.invoice-page-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.invoice-list-section {
+    display: flex;
+    align-items: center;
+    flex: 2;
+}
+
+.invoice-list-heading {
+    display: flex;
+    align-items: center;
+}
+
+.invoice-list-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.action-section {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1;
+}
+
+.action-button {
+    padding: 13px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #408dfb;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+    transition: background-color 0.3s ease;
+    position: absolute;
+    right: 8%;
+}
+
+.action-button:hover {
+    background-color: #307ae6;
+}
+
+.invoice-page-bottom {
+    width: 100%;
+    height: calc(100vh - 117px);
+    display: flex;
+    align-items: center;
+}
+
+.invoice-center-content {
+    width: 70%;
+    height: 282px;
+    margin-left: 16%;
+    position: relative;
+}
+
+.C1-div {
+    width: 70%;
+    height: 42px;
+    padding: 8px;
+    padding-left: 31px;
+    font-size: 24px;
+    margin-top: 6%;
+    margin-left: 250px;
+}
+
+.C2-div {
+    width: 87%;
+    height: 27px;
+    margin-left: 78px;
+    font-size: 14px;
+}
+
+.C3-buttonn {
+    width: 49%;
+    height: 30px;
+    /* border: 1px solid black; */
+    position: absolute;
+    top: 49%;
+    left: 159px;
+    text-align: center;
+    font-size: 15px;
+    padding-top: 9px;
+    background-color: #ffffff;
+    color: rgb(2, 36, 255);
+    border-radius: 5px;
+}

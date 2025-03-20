@@ -1,0 +1,36 @@
+.sideBarPurchaseBtnContainer{
+    margin-bottom: 13px;
+    overflow: hidden;
+}
+
+.sideBarPurchaseBtn{
+    padding: 5px;
+    margin-left: 27px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 17px;
+    color: rgb(239, 239, 239);
+    transition: background-color 0.3s ease;
+}
+
+.sideBarPurchaseBtn:hover{
+    background-color: rgb(31, 31, 44);
+}
+
+.PurchaseBtnItems{
+    /* background-color: aquamarine; */
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.PurchaseBtnContent{
+    padding: 11px;
+    margin-left: 29px;
+}
+
+.sideBarPurchaseBtnContainer.active .PurchaseBtnItems{
+    color: white;
+    max-height: 280px;
+}
+

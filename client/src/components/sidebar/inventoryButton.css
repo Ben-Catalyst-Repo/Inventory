@@ -1,0 +1,46 @@
+.homesideBar{
+    padding: 5px;
+    margin-left: 27px;
+    margin-top: 26px;
+}
+
+/* .homeSideBarBtn{
+    color: white;
+} */
+
+.sideBarInventoryBtnContainer{
+    margin-bottom: 13px;
+    overflow: hidden;
+}
+
+.sideBarInventoryBtn{
+    padding: 5px;
+    margin-left: 27px;
+    margin-top: 24px;
+    cursor: pointer;
+    font-size: 17px;
+    color: rgb(239, 239, 239);
+    transition: background-color 0.3s ease;
+}
+
+.sideBarInventoryBtn:hover{
+    background-color: rgb(31, 31, 44);
+}
+
+.inventorybtnItems{
+    /* background-color: aquamarine; */
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.inventorybtnContent{
+    padding: 11px;
+    margin-left: 29px;
+}
+
+.sideBarInventoryBtnContainer.active .inventorybtnItems{
+    color: white;
+    max-height: 280px;
+}
+

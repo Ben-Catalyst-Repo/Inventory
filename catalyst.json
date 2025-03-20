@@ -1,0 +1,13 @@
+{
+  "client": {
+    "source": "client",
+    "plugin": "zcatalyst-cli-plugin-react"
+  },
+  "functions": {
+    "targets": [
+      "advance_function"
+    ],
+    "ignore": [],
+    "source": "functions"
+  }
+}

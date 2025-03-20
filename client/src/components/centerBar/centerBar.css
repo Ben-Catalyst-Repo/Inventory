@@ -1,0 +1,185 @@
+/* .centerBarContainer{
+    flex: 8;
+} */
+
+.homePagecenterConatainer{
+    width: 100%;
+    height: calc(100vh - 50px);
+    overflow: auto;
+    border: 1px solid black;
+}
+
+
+::-webkit-scrollbar{
+    width: 5px;
+}
+
+::-webkit-scrollbar-track{
+    background-color: rgb(23, 23, 23);
+}
+
+::-webkit-scrollbar-thumb{
+   background-color: rgb(3, 3, 3);
+}
+
+/* .homepageCenterWrapper{
+    position: relative;
+} */
+
+
+.centerPageTop{
+    width: 100%;
+    border-bottom: 1px solid #dedede;
+    height: 110px;
+}
+
+.centerpagetopName{
+    margin-top: 4%;
+    margin-left: 5%;
+}
+
+.centerTopName{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.centerPagetopDashboard{
+    font-size: 18px;
+    font-weight: 400;
+    color: #606060;
+    margin-top: 58px;
+    margin-left: 17px;
+}
+
+.centerPageBottom{
+    width: 100%;
+    height: 1000px;
+    border: 3px solid black;
+    
+}
+
+.centerPageBottomTop{
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.BottomTopSalesActivity{
+    width: 60%;
+    height: 200px;
+    border: 1px solid black;
+    border-radius: 10px 10px 0 0!important;
+    margin-top: 4%;
+    margin-left: 4%;
+    position: relative;
+}
+
+.BottomTopSalesActivityTopOrder{
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid black;
+}
+
+.BottomTopSalesActivityContent{
+    font-size: 20px;
+    font-weight: 500;
+    position: absolute;
+    top: 14px;
+    left: 13px;
+}
+
+.BottomTopSalesActivityHr{
+    position: absolute;
+    top: 10px;
+}
+
+.BottomTopSalesActivityBottomOrder{
+    width: 100%;
+    height: 137px;
+}
+
+.SalesActivityBottomOrder{
+    display: flex;
+    align-items: center;
+    justify-content: space-between!important;;
+}
+
+.ToBePackaged{
+    width: 22%;
+    height: 137px;
+    border-right: 1px solid black;
+}
+
+.tobepackagedContent{
+    position: relative;
+}
+.packageCount{
+    margin: 21px 61PX -10px;
+    font-size: 52px;
+    color: #00d8ff;
+}
+
+.packageSalesQty{
+    padding-left: 64px;
+    font-size: 14px;
+}
+
+.bottomSalesPackaged{
+    position: absolute;
+    font-size: 12px;
+    left: 24px;
+    top: 75px;
+}
+
+
+.BottomTopInventorySummary{
+    width: 27%;
+    height: 200px;
+    border: 1px solid black;
+    margin-left: 30px;
+    margin-top: 46px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.BottomTopInventorySummaryheadDiv{
+    height: 54px;
+    border-bottom: 1px solid black;
+    position: relative;
+}
+
+.BottomTopInventorySummaryHeader{
+    font-size: 20px;
+    font-weight: 500;
+    position: absolute;
+    top: 14px;
+    left: 13px;
+    position: absolute;
+}
+
+.BottomTopInventorySummaryBottomItemLists{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 16px;
+}
+
+.BottomTopInventorySummaryBottomItemContent{
+    font-size: 12px;
+}
+
+.BottomTopInventorySummaryBottomItemContentHandCount{
+    font-size: 31px;
+}
+.BottomTopInventorySummaryBottomItemContentReceivedCount{
+    font-size: 31px;
+}
+
+.BottomHr{
+    margin: 17px;
+}
+
+.centerPageBottomCenter{
+    
+    margin-left: 4%;
+}

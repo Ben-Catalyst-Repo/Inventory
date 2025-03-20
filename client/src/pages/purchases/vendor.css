@@ -1,0 +1,114 @@
+.vendor-homepage-container {
+    width: 100%;
+    height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
+}
+
+.vendor-page-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.vendor-page-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.vendor-list-section {
+    display: flex;
+    align-items: center;
+    flex: 2;
+}
+
+.vendor-list-heading {
+    display: flex;
+    align-items: center;
+}
+
+.vendor-list-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.action-section {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1;
+}
+
+.action-button {
+    padding: 13px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #408dfb;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+    transition: background-color 0.3s ease;
+    position: absolute;
+    right: 8%;
+}
+
+.action-button:hover {
+    background-color: #307ae6;
+}
+
+.vendor-page-bottom {
+    width: 100%;
+    height: calc(100vh - 117px);
+    display: flex;
+    align-items: center;
+}
+
+.vendor-center-content {
+    width: 40%;
+    height: 282px;
+    margin-left: 30%;
+    position: relative;
+}
+
+.C1-vendor-div {
+    width: 70%;
+    height: 42px;
+    padding: 8px;
+    padding-left: 31px;
+    font-size: 24px;
+    margin-top: 6%;
+    margin-left: 24px;
+}
+
+.C2-vendor-div {
+    width: 70%;
+    height: 27px;
+    margin-left: 78px;
+    font-size: 14px;
+}
+
+.C3-vendor-button {
+    width: 43%;
+    height: 30px;
+    position: absolute;
+    top: 44%;
+    left: 106px;
+    text-align: center;
+    font-size: 16px;
+    padding-top: 9px;
+    background-color: #65c4ff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}

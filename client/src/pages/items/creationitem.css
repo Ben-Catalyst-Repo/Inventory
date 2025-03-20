@@ -1,0 +1,529 @@
+.new-item-container{
+  width: 100%;
+  height: calc(100vh - 50px);  /* Full height minus 50px for bottom bar */
+  overflow: auto;  /* Allow scrolling when content exceeds the height */
+  display: flex;
+  flex-direction: column;
+  position: relative;  /* This ensures child sticky elements work */
+
+}
+
+::-webkit-scrollbar{
+  width: 5px;
+}
+
+::-webkit-scrollbar-track{
+  background-color: rgb(255, 255, 255);
+}
+
+::-webkit-scrollbar-thumb{
+ background-color: rgb(255, 255, 255);
+}
+
+
+.item-form-container {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.second-topbar-container {
+  width: 100%;
+  margin-bottom: 20px;
+  /* position: fixed; */
+}
+
+.second-topbar-wrapper {
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ddd;
+  background-color: #f9f9f9;
+}
+
+.second-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.topbar-left {
+  flex: 2;
+}
+
+.item-list-label {
+  height: 46px;
+  display: flex;
+  align-items: center;
+}
+
+.item-list-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.topbar-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.new-item-button {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #abaaaa;
+  cursor: pointer;
+}
+
+
+.item-form-wrapper {
+    width: 98%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 34px;
+    background-color: rgb(249, 249, 249);
+    position: relative;
+    margin-bottom: 23px;
+    
+}
+
+.form-roww {
+  display: flex;
+  align-items: center;
+  gap: 137px;
+  margin-top: 16px;
+}
+
+.form-row {
+  width: 39%;
+    display: flex;
+    align-items: center;
+    gap: 137px;
+    position: relative;
+}
+
+.form-row label {
+  font-size: 16px;
+  color: #333;
+}
+ 
+.form-row input,
+.form-row select {
+  width: 70%;
+    height: 25px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+   
+}
+
+.form-row input[type="checkbox"] {
+  width: auto;
+  margin-right: 10px;
+}
+
+
+/* Form-select-CSS */
+/* Custom Dropdown Styling */
+.custom-dropdown {
+  position: relative;
+    width: 60%;
+   
+}
+
+.dropdown-button {
+  width: 86%;
+    height: 26px;
+    /* padding: 5px; */
+    padding-left: 12px;
+    font-size: 14px;
+    text-align: left;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    
+}
+
+.dropdown-button::after {
+  content: '▼';
+  position: absolute;
+  right: 15px;
+  font-size: 12px;
+  color: #333;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 139%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 5px;
+  z-index: 1000;
+  list-style: none;
+  padding: 0;
+  max-height: 200px; /* Limit the height */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.dropdown-menu .dropdown-item {
+  padding: 12px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #e6f2ff;
+  color: #007bff;
+}
+
+.dropdown-button:hover + .dropdown-menu {
+  display: block;
+}
+
+.dropdown-heading {
+  font-weight: bold;
+  color: #555;
+  padding: 8px 10px;
+  cursor: default;  /* Prevent users from clicking on the heading */
+  background-color: #f1f1f1;
+}
+
+.dropdown-item {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #ddd;
+}
+
+
+
+
+
+
+
+.type-selection {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.type-selection label {
+  font-size: 16px;
+  color: #333;
+}
+
+.drag-option {
+  font-size: 16px;
+  color: #777;
+  margin-left: 10px;
+}
+
+.image-upload {
+  width: 17%;
+    height: 137px;
+    border: 2px dashed #ddd;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    position: absolute;
+    bottom: 0;
+    left: 58%;
+    margin-bottom: 19px;
+}
+
+.image-upload p {
+  font-size: 14px;
+  color: #777;
+}
+
+.image-upload button {
+  margin: 10px 0;
+  padding: 8px 16px;
+  background-color: #408dfb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.image-upload button:hover {
+  background-color: #307ae6;
+}
+
+#item-name, #item-unit {
+  width: 64%;
+  position: absolute;
+  left: 168px;
+}
+
+.return-item-div{
+  display: flex;
+  align-items: center;
+}
+
+.additional-info-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Adds space between the two columns */
+}
+
+.left-column, .right-column {
+  width: 48%;  /* Both columns will have equal width */
+}
+
+.left-column{
+  margin-left: 25px;
+}
+
+.input-field {
+  width: 58%;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 35px;
+}
+
+.input-label {
+  
+  margin-bottom: 8px; 
+}
+
+.input-text {
+  width: 100%;
+    height: 33px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.hr-tag{
+  margin: 3%;
+}
+
+
+
+
+
+
+.sale-purchase-info-section{
+  width: 90%;
+  height: 343px;
+  display: flex;
+  margin-left: 35px;
+  margin-bottom: 11px;
+  
+}
+
+.sales-info-side{
+  width: 50%;
+  
+}
+.sales-checkbox-container{
+  height: 46px; 
+}
+
+.sales-info-label{
+    font-size: 22px;
+    font-weight: 500;
+    padding-left: 12px;
+}
+
+.purchase-info-side{
+  width: 50%;
+  
+}
+
+.purchase-checkbox-container{
+    height: 46px; 
+    margin-bottom: 23px;
+}
+
+.purchase-info-label{
+  font-size: 22px;
+  font-weight: 500;
+  padding-left: 12px;
+}
+
+.left-heading-fields{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  
+  margin-bottom: 20px;
+}
+
+.selling-price-span{
+  padding-left: 18px;
+}
+
+.selling-price-label{
+  width: 51%;
+    /* height: 36px; */
+    margin-right: 9%;
+}
+
+.account-label{
+  width: 51%;
+  margin-right: 9%;
+}
+
+.account-span{
+  padding-left: 18px;
+}
+
+.description-span{
+  padding-left: 18px;
+}
+
+.description-label{
+  margin-right: 26%;
+}
+
+.textarea-text{
+  width: 148%;
+  height: 60px;
+}
+
+
+.purchase-left-heading-fields {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.purchase-cost-price-span,
+.purchase-inr-span,
+.purchase-account-span,
+.purchase-description-span,
+.purchase-preferred-vendor-span {
+  padding-left: 18px;
+}
+
+.purchase-cost-price-label,
+.purchase-inr-label,
+.purchase-account-label,
+.purchase-description-label,
+.purchase-preferred-vendor-label {
+  width: 51%;
+  margin-right: 9%;
+}
+
+.purchase-textarea-text {
+  width: 96%;
+  height: 60px;
+ 
+}
+
+.purchase-input-text{
+    width: 96%;
+    height: 27px;
+    background-color: white;
+    border: 1px solid #dedede;
+}
+
+.modal-inventory-tracking{
+    
+    margin-left: 34px;
+}
+
+.inventory-checkbox{
+  width: 100%;
+  height: 39px;
+  margin-bottom: 10px;
+ 
+}
+
+.inventory-checkbox span{
+font-size: 20px;
+  font-weight: 600;
+  padding-left: 10px;
+} 
+
+
+.track-inventoryfield-container{
+    display: flex;
+    
+}
+
+.first-child{
+    width: 50%;
+}
+
+.track-inventory-fields{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 17px;
+}
+
+.track-inventory-label{
+    padding-left: 9px;
+}
+
+.track-inventory-input{
+  margin-right: 29%;
+}
+
+.input-fields{
+  width: 174%;
+  height: 34px;
+  border: 1px solid #c1c1c1;
+}
+
+.second-child{
+  width: 50%;
+}
+
+
+
+/* Bottom bar */
+
+/* Bottom bar styling */
+.bottom-bar {
+    height: 9px;
+    display: flex;
+    padding: 20px;
+    background-color: #fcfcfc;
+    border-top: 1px solid #e9e9e9;
+    /* position: fixed; */
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+    gap: 2%;
+}
+
+.bottom-bar-parent{
+  display: flex;
+  align-items: center;
+  gap: 15%;
+  padding-left: 10px;
+}
+.bottom-btn{
+  width: 70px;
+  height: 33px;
+  border-radius: 4px;
+  border: none;
+  background: #85fff0;
+}

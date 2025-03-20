@@ -1,0 +1,7 @@
+.applayout{
+    display: flex;
+}
+
+.contentArea{
+    flex: 8;
+}

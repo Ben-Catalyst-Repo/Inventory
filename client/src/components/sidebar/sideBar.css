@@ -1,0 +1,29 @@
+.sidebarContainer{
+    
+    flex: 1.6;
+    /* background-color: blue; */
+    height: calc(100vh - 50px);
+    overflow: auto;
+    background-color: #21263c;
+    color: white;
+    position: sticky;
+}
+
+
+
+/* .sidebarContainer{
+    flex: 2 1;
+     
+} */
+
+::-webkit-scrollbar{
+    width: 5px;
+}
+
+::-webkit-scrollbar-track{
+    background-color: rgb(34, 34, 59);
+}
+
+::-webkit-scrollbar-thumb{
+   background-color: rgb(150, 150, 150);
+}
