@@ -1,0 +1,177 @@
+[debug] [2025-05-07T03:47:22.842Z] : 
+[debug] [2025-05-07T03:47:22.848Z] : ----------------------------------------------------------------------
+[debug] [2025-05-07T03:47:22.848Z] : Command:      /usr/local/bin/node /usr/local/bin/catalyst serve
+[debug] [2025-05-07T03:47:22.848Z] : CLI Version:  1.17.6
+[debug] [2025-05-07T03:47:22.848Z] : Platform:     darwin
+[debug] [2025-05-07T03:47:22.849Z] : Node Version: v22.1.0
+[debug] [2025-05-07T03:47:22.849Z] : Time:         Wed May 07 2025 09:17:22 GMT+0530 (India Standard Time)
+[debug] [2025-05-07T03:47:22.849Z] : ----------------------------------------------------------------------
+[debug] [2025-05-07T03:47:22.849Z] : 
+[debug] [2025-05-07T03:47:23.252Z] : > authorizing via signed-in user option
+[debug] [2025-05-07T03:47:23.252Z] : > command requires scopes: ["ZohoCatalyst.projects.ALL","ZohoCatalyst.functions.ALL","ZohoCatalyst.functions.EXECUTE","ZohoCatalyst.webapp.ALL","ZohoCatalyst.pdfshot.execute","ZohoCatalyst.authentication.CREATE"]
+[debug] [2025-05-07T03:47:23.257Z] : > refreshing access token <
+[debug] [2025-05-07T03:47:23.257Z] : >>>> HTTP REQUEST : POST https://accounts.zoho.com/oauth/v2/token 
+<request body omitted>
+
+[debug] [2025-05-07T03:47:24.118Z] : <<<< HTTP RESPONSE : 200
+Response Headers: {"server":"ZGS","date":"Wed, 07 May 2025 03:47:24 GMT","content-type":"application/json;charset=UTF-8","content-length":"1980","connection":"close","set-cookie":["zalb_b266a5bf57=9f371135a524e2d1f51eb9f41fa26c60; Path=/; Secure; HttpOnly","iamcsr=3ce28b13-ad6d-45fc-8efd-82058eaca378;path=/;SameSite=None;Secure;priority=high","_zcsr_tmp=3ce28b13-ad6d-45fc-8efd-82058eaca378;path=/;SameSite=Strict;Secure;priority=high"],"cache-control":"no-store","x-content-type-options":"nosniff","pragma":"no-cache","x-frame-options":"SAMEORIGIN","vary":"accept-encoding","content-language":"en-US","strict-transport-security":"max-age=64072000; includeSubDomains; preload"}
+
+[debug] [2025-05-07T03:47:24.131Z] : >>>> HTTP REQUEST : GET https://api.catalyst.zoho.com/baas/v1/project/26818000000179006 
+
+[debug] [2025-05-07T03:47:25.142Z] : <<<< HTTP RESPONSE : 200
+Response Headers: {"server":"ZGS","date":"Wed, 07 May 2025 03:47:25 GMT","content-type":"application/vnd.catalyst.v2+json","transfer-encoding":"chunked","connection":"close","set-cookie":["zalb_46512fd555=bbdfb771565421abbe10f7a180903d28; Path=/; Secure; HttpOnly","ZD_CSRF_TOKEN=ef3f6057-8522-470d-bc54-c8ade67a5a59;path=/;SameSite=None;Secure;priority=high","_zcsr_tmp=ef3f6057-8522-470d-bc54-c8ade67a5a59;path=/;SameSite=Strict;Secure;priority=high"],"x-content-type-options":"nosniff","cache-control":"private,no-cache,no-store,max-age=0,must-revalidate","pragma":"no-cache","expires":"Thu, 01 Jan 1970 00:00:00 GMT","x-frame-options":"DENY","strict-transport-security":"max-age=64072000; includeSubDomains; preload"}
+
+[debug] [2025-05-07T03:47:25.146Z] : >>>> HTTP REQUEST : GET https://api.catalyst.zoho.com/baas/v1/project/26818000000179006/environment 
+
+[debug] [2025-05-07T03:47:25.970Z] : <<<< HTTP RESPONSE : 200
+Response Headers: {"server":"ZGS","date":"Wed, 07 May 2025 03:47:25 GMT","content-type":"application/vnd.catalyst.v2+json","transfer-encoding":"chunked","connection":"close","set-cookie":["zalb_46512fd555=c3d5ec374d3dc932973a3d50f55d8d00; Path=/; Secure; HttpOnly","ZD_CSRF_TOKEN=1a561f79-efe7-46e3-a3a3-a4ddf7c12a2a;path=/;SameSite=None;Secure;priority=high","_zcsr_tmp=1a561f79-efe7-46e3-a3a3-a4ddf7c12a2a;path=/;SameSite=Strict;Secure;priority=high"],"x-content-type-options":"nosniff","cache-control":"private,no-cache,no-store,max-age=0,must-revalidate","pragma":"no-cache","expires":"Thu, 01 Jan 1970 00:00:00 GMT","x-frame-options":"DENY","strict-transport-security":"max-age=64072000; includeSubDomains; preload"}
+
+[debug] [2025-05-07T03:47:26.067Z] : >>>> HTTP REQUEST : GET https://api.catalyst.zoho.com/baas/v1/project/26818000000179006/function 
+Query params: {"type":"basicio,event,cron,applogic,integration,browser_logic"}
+
+[debug] [2025-05-07T03:47:27.200Z] : <<<< HTTP RESPONSE : 200
+Response Headers: {"server":"ZGS","date":"Wed, 07 May 2025 03:47:26 GMT","content-type":"application/vnd.catalyst.v2+json","transfer-encoding":"chunked","connection":"close","set-cookie":["zalb_46512fd555=4ead9897700827f973c0f7dbded7f673; Path=/; Secure; HttpOnly","ZD_CSRF_TOKEN=102cff2c-916a-43c7-8b5b-12923515d6e1;path=/;SameSite=None;Secure;priority=high","_zcsr_tmp=102cff2c-916a-43c7-8b5b-12923515d6e1;path=/;SameSite=Strict;Secure;priority=high"],"x-content-type-options":"nosniff","cache-control":"private,no-cache,no-store,max-age=0,must-revalidate","pragma":"no-cache","expires":"Thu, 01 Jan 1970 00:00:00 GMT","x-frame-options":"DENY","strict-transport-security":"max-age=64072000; includeSubDomains; preload"}
+
+[debug] [2025-05-07T03:47:27.204Z] : unknown eol undefined hence skipping check
+[info] [2025-05-07T03:47:29.195Z] : [react-plugin]: Starting the development server...
+
+[info] [2025-05-07T03:47:29.195Z] : 
+[info] [2025-05-07T03:47:29.196Z] : ℹ Client[client]: Plugin : "zcatalyst-cli-plugin-react" is used for client serve
+[info] [2025-05-07T03:47:29.196Z] : 
+[info] [2025-05-07T03:47:29.726Z] : 
+[info] [2025-05-07T03:47:29.726Z] :  >>>>>>>>>>>>> AdvancedIO <<<<<<<<<<<< 
+[info] [2025-05-07T03:47:29.726Z] : ℹ advance_function: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T03:47:29.726Z] : 
+[info] [2025-05-07T03:47:29.726Z] : 
+[info] [2025-05-07T03:47:29.726Z] :  >>>>>>>>>>>>> Web Client <<<<<<<<<<<<
+[info] [2025-05-07T03:47:29.726Z] : ℹ client[client]: http://localhost:3000/app/
+[info] [2025-05-07T03:47:29.726Z] : 
+[info] [2025-05-07T03:47:30.797Z] : [react-plugin]: Compiled successfully!
+[info] [2025-05-07T03:47:30.797Z] : [react-plugin]: 
+[info] [2025-05-07T03:47:30.797Z] : [react-plugin]: You can now view client in the browser.
+[info] [2025-05-07T03:47:30.797Z] : [react-plugin]: 
+[info] [2025-05-07T03:47:30.797Z] : [react-plugin]:   Local:            http://localhost:3000/app/
+[info] [2025-05-07T03:47:30.797Z] : [react-plugin]:   On Your Network:  http://10.15.97.252:3000/app/
+[info] [2025-05-07T03:47:30.797Z] : [react-plugin]: 
+[info] [2025-05-07T03:47:30.797Z] : [react-plugin]: Note that the development build is not optimized.
+[info] [2025-05-07T03:47:30.797Z] : [react-plugin]: To create a production build, use npm run build.
+[info] [2025-05-07T03:47:30.797Z] : [react-plugin]: 
+[info] [2025-05-07T03:52:07.734Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T03:52:08.504Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T03:52:08.504Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T03:52:13.078Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T03:52:13.598Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T03:52:13.598Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T03:57:20.453Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T03:57:21.140Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T03:57:21.140Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T03:58:58.205Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T03:58:58.926Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T03:58:58.926Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T04:01:19.574Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T04:01:20.236Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T04:01:20.236Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[debug] [2025-05-07T05:02:04.588Z] : > refreshing access token <
+[debug] [2025-05-07T05:02:04.618Z] : >>>> HTTP REQUEST : POST https://accounts.zoho.com/oauth/v2/token 
+<request body omitted>
+
+[debug] [2025-05-07T05:02:05.604Z] : <<<< HTTP RESPONSE : 200
+Response Headers: {"server":"ZGS","date":"Wed, 07 May 2025 05:02:05 GMT","content-type":"application/json;charset=UTF-8","content-length":"1980","connection":"close","set-cookie":["zalb_b266a5bf57=9f371135a524e2d1f51eb9f41fa26c60; Path=/; Secure; HttpOnly","iamcsr=b1c38337-5d29-4f63-80a8-dd4a78ecbfb2;path=/;SameSite=None;Secure;priority=high","_zcsr_tmp=b1c38337-5d29-4f63-80a8-dd4a78ecbfb2;path=/;SameSite=Strict;Secure;priority=high"],"cache-control":"no-store","x-content-type-options":"nosniff","pragma":"no-cache","x-frame-options":"SAMEORIGIN","vary":"accept-encoding","content-language":"en-US","strict-transport-security":"max-age=64072000; includeSubDomains; preload"}
+
+[info] [2025-05-07T05:37:41.708Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T05:37:42.477Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T05:37:42.477Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T05:38:53.967Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T05:38:54.752Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T05:38:54.752Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T05:39:04.070Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T05:39:04.769Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T05:39:04.769Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T06:20:42.381Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T06:20:43.276Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T06:20:43.276Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T06:20:45.802Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T06:20:46.706Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T06:20:46.706Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T08:58:23.009Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T08:58:23.922Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T08:58:23.923Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T09:27:40.190Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T09:27:41.019Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T09:27:41.020Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T10:46:24.365Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T10:46:25.147Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T10:46:25.147Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T10:48:20.367Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T10:48:21.184Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T10:48:21.184Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T10:48:57.638Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T10:48:58.339Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T10:48:58.339Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T10:49:05.317Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T10:49:05.963Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T10:49:05.963Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T10:50:16.827Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T10:50:17.563Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T10:50:17.563Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T10:50:21.263Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T10:50:21.819Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T10:50:21.819Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T10:50:24.186Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T10:50:24.721Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T10:50:24.721Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T10:50:33.885Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T10:50:34.509Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T10:50:34.510Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T10:50:58.225Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T10:50:58.899Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T10:50:58.899Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T10:51:18.820Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T10:51:19.455Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T10:51:19.455Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T10:51:25.583Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T10:51:26.397Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T10:51:26.397Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T10:52:54.860Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T10:52:55.566Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T10:52:55.566Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-07T10:53:14.738Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-07T10:53:15.367Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-07T10:53:15.367Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-08T02:01:40.794Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-08T02:01:41.646Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-08T02:01:41.646Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-08T02:10:57.984Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-08T02:10:58.670Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-08T02:10:58.670Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
+[info] [2025-05-08T02:11:29.652Z] : 
+change of index.js in advance_function detected. Preparing your function, please wait...
+[info] [2025-05-08T02:11:30.364Z] : ℹ AdvancedIO[advance_function]: ready!
+[info] [2025-05-08T02:11:30.365Z] : ℹ AdvancedIO[advance_function]: http://localhost:3000/server/advance_function/
