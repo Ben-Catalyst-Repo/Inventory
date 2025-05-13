@@ -806,7 +806,7 @@ app.delete('/item/:itemId', async (req, res) => {
     }
 });
 
-
+// Get All Items
 app.get('/items', async (req, res) => {
     try {
         const app = catalyst.initialize(req);
@@ -865,6 +865,63 @@ app.get('/items', async (req, res) => {
         res.status(500).json({
             success: false,
             error: "Failed to fetch items",
+            details: error.message
+        });
+    }
+});
+
+//Get Singel Item
+app.get('/items/:item_id', async (req, res) => {
+    try {
+        const app = catalyst.initialize(req);
+        const zcql = app.zcql();
+        const itemId = req.params.item_id;
+
+        // Fetch item by ID
+        const itemQuery = `SELECT * FROM Items WHERE ROWID = '${itemId}'`;
+        const itemResult = await zcql.executeZCQLQuery(itemQuery);
+
+        if (itemResult.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "Item not found"
+            });
+        }
+
+        const item = itemResult[0].Items;
+        
+        // Fetch price brackets
+        const priceBracketsQuery = `SELECT * FROM ItemPriceBrackets WHERE item_id = '${itemId}'`;
+        const priceBracketsResult = await zcql.executeZCQLQuery(priceBracketsQuery);
+
+        // Fetch package details
+        const packageQuery = `SELECT * FROM ItemPackageDetails WHERE item_id = '${itemId}'`;
+        const packageResult = await zcql.executeZCQLQuery(packageQuery);
+
+        // Fetch vendors
+        const vendorsQuery = `SELECT * FROM ItemVendors WHERE item_id = '${itemId}'`;
+        const vendorsResult = await zcql.executeZCQLQuery(vendorsQuery);
+    
+
+        // const documentsQuery = `SELECT * FROM Documents WHERE item_id = '${itemId}'`;
+        // const documentsResult = await zcql.executeZCQLQuery(documentsQuery);
+
+        res.status(200).json({
+            success: true,
+            item: {
+                ...item,
+                price_brackets: priceBracketsResult.map(pb => pb.ItemPriceBrackets),
+                package_details: packageResult[0]?.ItemPackageDetails || null,
+                vendors: vendorsResult.map(v => v.ItemVendors),
+                // documents: documentsResult.map(d => d.Documents)
+            }
+        });
+
+    } catch (error) {
+        console.error("Error fetching item:", error);
+        res.status(500).json({
+            success: false,
+            error: "Failed to fetch item",
             details: error.message
         });
     }
@@ -1114,7 +1171,6 @@ app.delete('/delete-customer/:customer_id', async (req, res) => {
     }
 });
 
-
 //Get All Customers
 app.get('/customers-all', async (req, res) => {
     try {
@@ -1132,11 +1188,11 @@ app.get('/customers-all', async (req, res) => {
             const customerId = customer.ROWID; // ROWID
 
             // Get contacts
-            const contactsQuery = `SELECT * FROM CustomerContacts WHERE customer_id = '${customerId}'`;
+            const contactsQuery = `SELECT * FROM Contact_persons WHERE customer_id = '${customerId}'`;
             const contactsResult = await zcql.executeZCQLQuery(contactsQuery);
 
             // Get addresses
-            const addressesQuery = `SELECT * FROM CustomerAddresses WHERE customer_id = '${customerId}'`;
+            const addressesQuery = `SELECT * FROM Address WHERE customer_id = '${customerId}'`;
             const addressesResult = await zcql.executeZCQLQuery(addressesQuery);
 
             return {
@@ -1162,7 +1218,278 @@ app.get('/customers-all', async (req, res) => {
     }
 });
 
+// Get Single Customer
+app.get('/customer/:customer_id', async (req, res) => {
+    try {
+        const app = catalyst.initialize(req);
+        const zcql = app.zcql();
+        const customerId = req.params.customer_id;
 
+        // Fetch single customer
+        const customerQuery = `SELECT * FROM Customers WHERE ROWID = '${customerId}'`;
+        const customerResult = await zcql.executeZCQLQuery(customerQuery);
+
+        if (customerResult.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "Customer not found"
+            });
+        }
+
+        const customer = customerResult[0].Customers;
+
+        // Fetch related contact persons
+        const contactsQuery = `SELECT * FROM Contact_persons WHERE customer_id = '${customerId}'`;
+        const contactsResult = await zcql.executeZCQLQuery(contactsQuery);
+
+        // Fetch related addresses
+        const addressesQuery = `SELECT * FROM Address WHERE customer_id = '${customerId}'`;
+        const addressesResult = await zcql.executeZCQLQuery(addressesQuery);
+
+        res.status(200).json({
+            success: true,
+            customer: {
+                ...customer,
+                contacts: contactsResult.map(c => c.CustomerContacts),
+                addresses: addressesResult.map(a => a.CustomerAddresses),
+            }
+        });
+
+    } catch (error) {
+        console.error("Error fetching customer:", error);
+        res.status(500).json({
+            success: false,
+            error: "Failed to fetch customer",
+            details: error.message
+        });
+    }
+});
+
+// Add Sales Order
+app.post('/add-sales-orders', async (req, res) => {
+    console.log("Inside Add sales order");
+    const app = catalyst.initialize(req);
+    const ds = app.datastore();
+  
+    const salesOrderTable = ds.table('SalesOrders');
+    const soItemsTable = ds.table('SalesOrderItems');
+    const soContactsTable = ds.table('SalesOrderContacts');
+  
+    try {
+      const salesOrderRow = {
+        customer_id: req.body.customer_id,
+        reference_number: req.body.reference_number,
+        so_date: req.body.date,
+        shipment_date: req.body.shipment_date,
+        delivery_method: req.body.delivery_method,
+        notes: req.body.notes,
+        discount: req.body.discount,
+        discount_type: req.body.discount_type,
+        adjustment: req.body.adjustment,
+        adjustment_description: req.body.adjustment_description,
+        template_id: req.body.template_id,
+        shipping_address_id: req.body.shipping_address_id,
+        billing_address_id: req.body.billing_address_id,
+        payment_terms: req.body.payment_terms,
+        payment_terms_label: req.body.payment_terms_label,
+        status: "NULL"
+      };
+  
+
+      const insertedSalesOrder = await salesOrderTable.insertRow(salesOrderRow);
+      console.log("SO inserted successfully");
+      const sales_order_id = insertedSalesOrder.ROWID;
+      console.log("SO_ROWID:::", sales_order_id);
+  
+      //Insert Contact Persons
+      const contactRows = req.body.contact_persons.map(contact_id => ({
+        sales_order_id : sales_order_id,
+        contact_id
+      }));
+
+    
+
+      await soContactsTable.insertRows(contactRows);
+
+      console.log("SO contact person inserted successfully");
+  
+      //Insert Line Items
+      const itemRows = req.body.line_items.map(item => ({
+        sales_order_id: sales_order_id,
+        item_id: item.item_id,
+        rate: item.rate,
+        quantity: item.quantity,
+        discount: item.discount,
+        unit: item.unit,
+        name: item.name,
+        description: item.description,
+        item_order: item.item_order
+      }));
+      await soItemsTable.insertRows(itemRows);
+      console.log("SO items inserted succesfully");
+
+
+      //Need to handle Documents
+
+      res.status(200).json({ success: true, sales_order_id });
+  
+    } catch (err) {
+      console.error("Save SO Error:", err);
+      res.status(500).json({ success: false, message: "Error saving sales order", error: err.message });
+    }
+ });
+
+// Update Sales Order
+app.put('/update-sales-order/:id', async (req, res) => {
+    console.log("Inside Update sales order");
+    const app = catalyst.initialize(req);
+    const ds = app.datastore();
+  
+    const salesOrderTable = ds.table('SalesOrders');
+    const soItemsTable = ds.table('SalesOrderItems');
+    const soContactsTable = ds.table('SalesOrderContacts');
+  
+    const sales_order_id = req.params.id;
+  
+    try {
+      const updatedSalesOrder = {
+        ROWID: sales_order_id,
+        customer_id: req.body.customer_id,
+        reference_number: req.body.reference_number,
+        so_date: req.body.date,
+        shipment_date: req.body.shipment_date,
+        delivery_method: req.body.delivery_method,
+        notes: req.body.notes,
+        discount: req.body.discount,
+        discount_type: req.body.discount_type,
+        adjustment: req.body.adjustment,
+        adjustment_description: req.body.adjustment_description,
+        template_id: req.body.template_id,
+        shipping_address_id: req.body.shipping_address_id,
+        billing_address_id: req.body.billing_address_id,
+        payment_terms: req.body.payment_terms,
+        payment_terms_label: req.body.payment_terms_label,
+        status: req.body.status || "NULL"
+      };
+    
+      await salesOrderTable.updateRow(updatedSalesOrder);
+      console.log("Sales order updated successfully");
+    
+      await soContactsTable.deleteRows({ sales_order_id });
+      await soItemsTable.deleteRows({ sales_order_id });
+  
+      console.log("Old contact persons and items deleted");
+  
+ 
+      const contactRows = req.body.contact_persons.map(contact_id => ({
+        sales_order_id,
+        contact_id
+      }));
+      await soContactsTable.insertRows(contactRows);
+
+      const itemRows = req.body.line_items.map(item => ({
+        sales_order_id,
+        item_id: item.item_id,
+        rate: item.rate,
+        quantity: item.quantity,
+        discount: item.discount,
+        unit: item.unit,
+        name: item.name,
+        description: item.description,
+        item_order: item.item_order
+      }));
+
+      await soItemsTable.insertRows(itemRows);
+  
+      console.log("Updated contacts and items inserted");
+  
+      res.status(200).json({
+        success: true,
+        message: "Sales order updated successfully",
+        sales_order_id
+      });
+  
+    } catch (err) {
+      console.error("Update SO Error:", err);
+      res.status(500).json({ success: false, message: "Error updating sales order", error: err.message });
+    }
+  });
+
+// Delete Sales order
+app.delete('/delete-sales-order/:id', async (req, res) => {
+    console.log("Inside Delete sales order");
+    const app = catalyst.initialize(req);
+  
+    const salesOrderTable = ds.table('SalesOrders');
+    const soItemsTable = ds.table('SalesOrderItems');
+    const soContactsTable = ds.table('SalesOrderContacts');
+    const ds = app.datastore();
+
+    const sales_order_id = req.params.id;
+  
+    try {
+      await soContactsTable.deleteRows({ sales_order_id });
+      await soItemsTable.deleteRows({ sales_order_id });
+      console.log("Deleted contact persons and items");
+  
+      await salesOrderTable.deleteRow(sales_order_id);
+      console.log("Sales order deleted successfully");
+  
+      res.status(200).json({
+        success: true,
+        message: "Sales order and associated data deleted successfully",
+        sales_order_id
+      });
+  
+    } catch (err) {
+      console.error("Delete SO Error:", err);
+      res.status(500).json({ success: false, message: "Error deleting sales order", error: err.message });
+    }
+  });
+
+// Get Sales Order Details
+app.get('/get-sales-order/:id', async (req, res) => {
+    console.log("Inside Get sales order details");
+    const app = catalyst.initialize(req);
+    const zcql = app.zcql();
+  
+    const sales_order_id = req.params.id;
+  
+    try {
+      // Fetch SalesOrder main details
+      const salesOrderResult = await zcql.executeZCQLQuery(`
+        SELECT * FROM SalesOrders WHERE ROWID = '${sales_order_id}'
+      `);
+      if (salesOrderResult.length === 0) {
+        return res.status(404).json({ success: false, message: "Sales order not found" });
+      }
+      const salesOrder = salesOrderResult[0].SalesOrders;
+  
+      // Fetch Line Items
+      const itemsResult = await zcql.executeZCQLQuery(`
+        SELECT * FROM SalesOrderItems WHERE sales_order_id = '${sales_order_id}'
+      `);
+      const line_items = itemsResult.map(row => row.SalesOrderItems);
+      
+      // Fetch Contact Persons
+      const contactsResult = await zcql.executeZCQLQuery(`
+        SELECT * FROM SalesOrderContacts WHERE sales_order_id = '${sales_order_id}'
+      `);
+      const contact_persons = contactsResult.map(row => row.SalesOrderContacts);
+  
+      res.status(200).json({
+        success: true,
+        sales_order: salesOrder,
+        line_items,
+        contact_persons
+      });
+      
+    } catch (err) {
+      console.error("Get SO Error:", err);
+      res.status(500).json({ success: false, message: "Error fetching sales order", error: err.message });
+    }
+  });
+  
 
 
 module.exports = app
