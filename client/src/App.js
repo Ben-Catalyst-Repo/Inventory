@@ -12,6 +12,7 @@ import Vendor from "./pages/purchases/Vendor";
 import PurchaseOrders from "./pages/purchases/PurchaseOrders";
 import Bills from "./pages/purchases/Bills";
 import ItemGroupHP from "./pages/items/ItemGroup/ItemGroupHP";
+import AllItems from "./pages/items/AllItems";
 
 function App() {
   return (
@@ -26,12 +27,13 @@ function App() {
             <Route exact path="/" element={<Home />} />
             <Route path="/item" element={<ItemHomePage />} />
             <Route path="/customer" element={<CustomerPage />} />
-            <Route path="/item/new" element={<ItemGroupHP />} />
+            <Route path="/item/new" element={<CreateItem />} />
             <Route path="/sales/deliveryChallan" element={<DeliveryChallan />} />
             <Route path="/sales/invoice" element={<Invoice />} />
             <Route path="/purchase/vendor" element={<Vendor />} />
             <Route path="/purchase/purchaseOrder" element={<PurchaseOrders />} />
             <Route path="/purchase/bills" element={<Bills />} />
+            <Route path="/allitems" element={<AllItems />} />
           </Routes>
         </div>
 

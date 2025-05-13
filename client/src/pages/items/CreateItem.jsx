@@ -1,618 +1,181 @@
 import React, { useState } from 'react';
-import "./creationitem.css";
-import { Link } from 'react-router-dom';
 
-export default function CreateItem() {
+const NewItemForm = () => {
+  const [itemType, setItemType] = useState('Goods');
+  const [isSalesInfo, setIsSalesInfo] = useState(true);
+  const [isPurchaseInfo, setIsPurchaseInfo] = useState(true);
+  const [trackInventory, setTrackInventory] = useState(true);
 
-  const [isSalesEnabled, setIsSalesEnabled] = useState(false);
-  const [isPurchaseEnabled, setIsPurchaseEnabled] = useState(false);
-  const [isInventoryEnabled, setIsInventoryEnabled] = useState(false);
-  const [isSalesDropdownOpen, setIsSalesDropdownOpen] = useState(false);  // Separate state for sales dropdown
-  const [isNewUnitDropdownOpen, setIsNewUnitDropdownOpen] = useState(false);  // Separate state for new unit dropdown
-  const [selectedUnit, setSelectedUnit] = useState('Select a unit');
-  const [selectedNewUnit, setSelectedNewUnit] = useState('Select new unit');
+  const canTrackInventory = isSalesInfo && isPurchaseInfo;
 
-  const toggleSalesFields = () => {
-    setIsSalesEnabled((prev) => !prev);
-  };
-
-  const togglePurchaseFields = () => {
-    setIsPurchaseEnabled((prev) => !prev);
-  };
-
-  const handleCheckboxChange = () => {
-    setIsInventoryEnabled(!isInventoryEnabled);
-  };
-
-  const toggleSalesDropdown = () => {
-    setIsSalesDropdownOpen(!isSalesDropdownOpen);
-    setIsNewUnitDropdownOpen(false);  // Close new unit dropdown when sales dropdown is opened
-  };
-
-  const toggleNewUnitDropdown = () => {
-    setIsNewUnitDropdownOpen(!isNewUnitDropdownOpen);
-    setIsSalesDropdownOpen(false);  // Close sales dropdown when new unit dropdown is opened
-  };
-
-  const handleSelect = (unit) => {
-    setSelectedUnit(unit);
-    setIsSalesDropdownOpen(false);  // Close the dropdown after selection
-  };
-
-  const handleSelectNewUnit = (unit) => {
-    setSelectedNewUnit(unit);
-    setIsNewUnitDropdownOpen(false);  // Close the dropdown after selection
-  };
   return (
-    <>
-      <div className="new-item-container">
-        <div className="item-form-container">
-          <div className="second-topbar-container">
-            <div className="second-topbar-wrapper">
-              <div className="second-topbar">
-                <div className="topbar-left">
-                  <div className="item-list-label">
-                    <span className="item-list-title">New Item</span>
-                  </div>
-                </div>
-                <div className="topbar-right">
-                  <Link to="/item" className="new-item-button" style={{ textDecoration: 'none' }}>
-                    <span>X</span>
-                  </Link>
-                </div>
+    <div className="max-w-7xl mx-auto p-6">
+      <h2 className="text-2xl font-semibold mb-6">New Item</h2>
+      <form className="space-y-10">
+
+        {/* Basic Info */}
+        <div className="flex justify-between gap-6">
+          <div className="w-2/3 space-y-4">
+            <div className="flex items-center gap-4">
+              <label className="w-40">Type</label>
+              <div className="flex gap-4">
+                <label><input type="radio" name="type" checked={itemType === 'Goods'} onChange={() => setItemType('Goods')} /> Goods</label>
+                <label><input type="radio" name="type" checked={itemType === 'Service'} onChange={() => setItemType('Service')} /> Service</label>
               </div>
             </div>
+
+            <div className="flex items-center gap-4">
+              <label htmlFor="name" className="w-40">Name<span className="text-red-500">*</span></label>
+              <input type="text" id="name" required className="border p-2 w-full" />
+            </div>
+
+            <div className="flex items-center gap-4">
+              <label htmlFor="sku" className="w-40">SKU</label>
+              <input type="text" id="sku" className="border p-2 w-full" />
+            </div>
+
+            <div className="flex items-center gap-4">
+              <label htmlFor="unit" className="w-40">Unit<span className="text-red-500">*</span></label>
+              <select id="unit" className="border p-2 w-full">
+                <option value="">Select or type to add</option>
+              </select>
+            </div>
+
+            {itemType === 'Goods' && (
+              <div className="flex items-center gap-4">
+                <label className="w-40"><input type="checkbox" defaultChecked /> Returnable Item</label>
+              </div>
+            )}
           </div>
 
-          <div className="item-form-wrapper">
-            <div className="form-roww">
-              <label>Type</label>
-              <div className="type-selection">
-                <label>
-                  <input type="radio" name="item-type" value="Goods" />
-                  Goods
-                </label>
-                <label>
-                  <input type="radio" name="item-type" value="Service" />
-                  Service
-                </label>
-              </div>
-            </div>
-
-            <div className="form-row">
-              <label htmlFor="item-name" className="new-item-label">Name</label>
-              <input type="text" id="item-name" className="new-item-input" placeholder="Enter item name" />
-            </div>
-
-         
-           
-            <div className="form-row">
-              <label htmlFor="item-unit" className="new-item-label">Unit</label>
-                  <div className="custom-dropdown">
-                    <div className="dropdown" style={{ marginLeft: '2px' }}>
-                      <button className="dropdown-button" onClick={toggleSalesDropdown}>
-                        {selectedUnit}
-                      </button>
-                      {isSalesDropdownOpen && (
-                        <ul className="dropdown-menu">
-                          <li className="dropdown-item" onClick={() => handleSelect('box')}>BOX - box</li>
-                          <li className="dropdown-item" onClick={() => handleSelect('cm')}>CMS - cm</li>
-                          <li className="dropdown-item" onClick={() => handleSelect('ft')}>FTS - ft</li>
-                          <li className="dropdown-item" onClick={() => handleSelect('g')}>GMS - g</li>
-                          <li className="dropdown-item" onClick={() => handleSelect('in')}>INC - in</li>
-                          <li className="dropdown-item" onClick={() => handleSelect('kg')}>KGS - kg</li>
-                          <li className="dropdown-item" onClick={() => handleSelect('km')}>KME - km</li>
-                          <li className="dropdown-item" onClick={() => handleSelect('lb')}>LBS - lb</li>
-                          <li className="dropdown-item" onClick={() => handleSelect('mg')}>MGS - mg</li>
-                          <li className="dropdown-item" onClick={() => handleSelect('ml')}>MLT - ml</li>
-                          <li className="dropdown-item" onClick={() => handleSelect('m')}>MTR - m</li>
-                          <li className="dropdown-item" onClick={() => handleSelect('pcs')}>PCS - pcs</li>
-                        </ul>
-                      )}
-                    </div>
-                  </div>
-             </div>
-
-            
-
-
-               
-
-            <div className="form-row">
-              <label htmlFor='return-item' className='return-item-div'>
-                <input type="checkbox" id="returnable-item" className="new-item-checkbox" />
-                <span className="return">Returnable Item</span>
-              </label>
-            </div>
-
-            <div className="image-row">
-              <div className="image-upload">
-                <button className="browse-images-btn">Browse images</button>
-                <p className="image-description">You can add up to 15 images, each not exceeding 5 MB in size and 7000 X 7000 pixels resolution.</p>
-              </div>
+          <div className="w-1/3">
+            <label className="block mb-2">Upload Image</label>
+            <div className="border-2 border-dashed p-4 text-center text-sm">
+              <p>Drag image(s) here or <a href="#" className="text-blue-500">Browse images</a></p>
+              <small className="block mt-2 text-gray-500">You can add up to 15 images, each not exceeding 5 MB in size and 7000 X 7000 pixels resolution.</small>
             </div>
           </div>
         </div>
 
-
-
-{/* Second Part */}
-
-<div className="modal-inventory-tracking">
-    <hr className='hr-tag' />
-   
-      {/* Checkbox and Side Heading */}
-     
-      
-    
-    <div className="track-inventoryfield-container">
-
-      {/* Fields */}
-     <div className="first-child">
-        <div className="track-inventory-fields">
-          <label htmlFor="">
-            <div className="track-inventory-label">
-              <span>Dimensions</span>
-            </div>
-          </label>
-          <div className="track-inventory-input">
-            <input
-              type="text"
-              id="product-price"
-              className="input-fields"
-              placeholder="Enter product price"
-              disabled={!isInventoryEnabled}
-            />
-          </div>
-        </div>
-
-        <div className="track-inventory-fields">
-          <label htmlFor="">
-            <div className="track-inventory-label">
-              <span>Manufacturer</span>
-            </div>
-          </label>
-          <div className="track-inventory-input">
-            <input
-              type="text"
-              id="stock-quantity"
-              className="input-fields"
-              placeholder="Enter stock quantity"
-              disabled={!isInventoryEnabled}
-            />
-          </div>
-        </div>
-
-        <div className="track-inventory-fields">
-          <label htmlFor="">
-            <div className="track-inventory-label">
-              <span>UPC</span>
-            </div>
-          </label>
-          <div className="track-inventory-input">
-            <input
-              type="text"
-              id="product-price"
-              className="input-fields"
-              placeholder="Enter product price"
-              disabled={!isInventoryEnabled}
-            />
-          </div>
-        </div>
-
-        <div className="track-inventory-fields">
-          <label htmlFor="">
-            <div className="track-inventory-label">
-              <span>EAN</span>
-            </div>
-          </label>
-          <div className="track-inventory-input">
-            <input
-              type="text"
-              id="product-price"
-              className="input-fields"
-              placeholder="Enter product price"
-              disabled={!isInventoryEnabled}
-            />
-          </div>
-        </div>
-      </div>
-     <div className="second-child">
-     <div className="track-inventory-fields">
-          <label htmlFor="">
-            <div className="track-inventory-label">
-              <span>Weight</span>
-            </div>
-          </label>
-          <div className="track-inventory-input">
-            <input
-              type="text"
-              id="product-price"
-              className="input-fields"
-              placeholder="Enter product price"
-              disabled={!isInventoryEnabled}
-            />
-          </div>
-        </div>
-
-
-        <div className="track-inventory-fields">
-          <label htmlFor="">
-            <div className="track-inventory-label">
-              <span>Brand</span>
-            </div>
-          </label>
-          <div className="track-inventory-input">
-            <input
-              type="text"
-              id="product-price"
-              className="input-fields"
-              placeholder="Enter product price"
-              disabled={!isInventoryEnabled}
-            />
-          </div>
-        </div>
-
-        <div className="track-inventory-fields">
-          <label htmlFor="">
-            <div className="track-inventory-label">
-              <span>MPN</span>
-            </div>
-          </label>
-          <div className="track-inventory-input">
-            <input
-              type="text"
-              id="product-price"
-              className="input-fields"
-              placeholder="Enter product price"
-              disabled={!isInventoryEnabled}
-            />
-          </div>
-        </div>
-
-        <div className="track-inventory-fields">
-          <label htmlFor="">
-            <div className="track-inventory-label">
-              <span>ISBN</span>
-            </div>
-          </label>
-          <div className="track-inventory-input">
-            <input
-              type="text"
-              id="product-price"
-              className="input-fields"
-              placeholder="Enter product price"
-              disabled={!isInventoryEnabled}
-            />
-          </div>
-        </div>
-     </div>
-    </div>
-  </div>
-
-
-
-
-  <hr className='hr-tag' />
-
-
-{/* Sales and Purchase Information Part */}
-        <div className="sale-purchase-info-section">
-          {/* Sales Information */}
-          <div className="sales-info-side">
-            <div className="sales-checkbox-container">
-              <input
-                type="checkbox"
-                id="sales-info-checkbox"
-                onChange={toggleSalesFields}
-              />
-              <label className='sales-info-label' htmlFor="sales-info-checkbox">Sales Information</label>
-            </div>
-
-            <div className="sales-fields">
-              <div className="left-heading-fields">
-                <label htmlFor="">
-                  <div className="selling-price-span">
-                    <span>Selling Price</span>
-                  </div>
-                </label>
-                <div className="selling-price-label">
-                  <input
-                    type="text"
-                    id="selling-price"
-                    className="input-text"
-                    placeholder="Enter selling price"
-                    disabled={!isSalesEnabled}
-                  />
-                </div>
-              </div>
-
-              <div className="left-heading-fields">
-                <label htmlFor="new-item-unit" className="new-item-label">New Unit</label>
-                <div className="custom-dropdown">
-                <div className="dropdown" style={{ marginLeft: '2px' }}>
-                    <button className="dropdown-button" onClick={toggleNewUnitDropdown}>
-                      {selectedNewUnit}
-                    </button>
-                    {isNewUnitDropdownOpen && (
-                      <ul className="dropdown-menu">
-                        {/* Heading for the units */}
-                        <li className="dropdown-heading">Income</li>
-                        <li className="dropdown-item" onClick={() => handleSelectNewUnit('liters')}>LITERS - l</li>
-                        <li className="dropdown-item" onClick={() => handleSelectNewUnit('meters')}>METERS - m</li>
-                        <li className="dropdown-item" onClick={() => handleSelectNewUnit('pieces')}>PIECES - pcs</li>
-                        <li className="dropdown-item" onClick={() => handleSelectNewUnit('gallons')}>GALLONS - gal</li>
-                        
-                        {/* You can add more sections with headings if needed */}
-                      </ul>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              <div className="left-heading-fields">
-                <label htmlFor="">
-                  <div className="description-span">
-                    <span>Description</span>
-                  </div>
-                </label>
-                <div className="description-label">
-                  <textarea
-                    id="description"
-                    className="textarea-text"
-                    placeholder="Enter description"
-                    disabled={!isSalesEnabled}
-                  ></textarea>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Purchase Information */}
-          <div className="purchase-info-side">
-            <div className="purchase-checkbox-container">
-              <input
-                type="checkbox"
-                id="purchase-info-checkbox"
-                onChange={togglePurchaseFields}
-              />
-              <label className="purchase-info-label" htmlFor="purchase-info-checkbox">
-                Purchase Information
-              </label>
-            </div>
-
-            <div className="purchase-fields">
-              {/* Cost Price */}
-              <div className="purchase-left-heading-fields">
-                <label htmlFor="purchase-cost-price">
-                  <div className="purchase-cost-price-span">
-                    <span>Cost Price</span>
-                  </div>
-                </label>
-                <div className="purchase-cost-price-label">
-                  <input
-                    type="text"
-                    id="purchase-cost-price"
-                    className="purchase-input-text"
-                    placeholder="Enter cost price"
-                    disabled={!isPurchaseEnabled}
-                  />
-                </div>
-              </div>
-
-              {/* INR */}
-              <div className="purchase-left-heading-fields">
-                <label htmlFor="purchase-inr">
-                  <div className="purchase-inr-span">
-                    <span>INR</span>
-                  </div>
-                </label>
-                <div className="purchase-inr-label">
-                  <input
-                    type="text"
-                    id="purchase-inr"
-                    className="purchase-input-text"
-                    placeholder="Enter INR value"
-                    disabled={!isPurchaseEnabled}
-                  />
-                </div>
-              </div>
-
-              {/* Account */}
-              <div className="purchase-left-heading-fields">
-                <label htmlFor="purchase-account">
-                  <div className="purchase-account-span">
-                    <span>Account</span>
-                  </div>
-                </label>
-                <div className="purchase-account-label">
-                  <input
-                    type="text"
-                    id="purchase-account"
-                    className="purchase-input-text"
-                    placeholder="Enter account details"
-                    disabled={!isPurchaseEnabled}
-                  />
-                </div>
-              </div>
-
-              {/* Description */}
-              <div className="purchase-left-heading-fields">
-                <label htmlFor="purchase-description">
-                  <div className="purchase-description-span">
-                    <span>Description</span>
-                  </div>
-                </label>
-                <div className="purchase-description-label">
-                  <textarea
-                    id="purchase-description"
-                    className="purchase-textarea-text"
-                    placeholder="Enter description"
-                    disabled={!isPurchaseEnabled}
-                  ></textarea>
-                </div>
-              </div>
-
-              {/* Preferred Vendor */}
-              <div className="purchase-left-heading-fields">
-                <label htmlFor="purchase-preferred-vendor">
-                  <div className="purchase-preferred-vendor-span">
-                    <span>Preferred Vendor</span>
-                  </div>
-                </label>
-                <div className="purchase-preferred-vendor-label">
-                  <input
-                    type="text"
-                    id="purchase-preferred-vendor"
-                    className="purchase-input-text"
-                    placeholder="Enter vendor name"
-                    disabled={!isPurchaseEnabled}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-<div>
-         
-
-
-{/* Track Inventory Part */}
-        
-        {isSalesEnabled && isPurchaseEnabled && (
-  <div className="modal-inventory-tracking">
-    <hr className='hr-tag' />
-   
-      {/* Checkbox and Side Heading */}
-     
-      <div className="checkbox-section">
-        <label htmlFor="enable-inventory">
-          <div className="inventory-checkbox">
+        {/* Sales & Purchase Info Toggles */}
+        <div className="flex justify-between items-center gap-6">
+          <label>
             <input
               type="checkbox"
-              id="enable-inventory"
-              checked={isInventoryEnabled}
-              onChange={handleCheckboxChange}
+              className="mr-2"
+              checked={isSalesInfo}
+              onChange={() => setIsSalesInfo(!isSalesInfo)}
             />
-            <span>Track Inventory</span>
-          </div>
-        </label>
-      </div>
-    
-    <div className="track-inventoryfield-container">
-
-      {/* Fields */}
-     <div className="first-child">
-        <div className="track-inventory-fields">
-          <label htmlFor="">
-            <div className="track-inventory-label">
-              <span>Inventory Account</span>
-            </div>
+            Sales Information
           </label>
-          <div className="track-inventory-input">
+          <label>
             <input
-              type="text"
-              id="product-price"
-              className="input-fields"
-              placeholder="Enter product price"
-              disabled={!isInventoryEnabled}
+              type="checkbox"
+              className="mr-2"
+              checked={isPurchaseInfo}
+              onChange={() => setIsPurchaseInfo(!isPurchaseInfo)}
             />
+            Purchase Information
+          </label>
+        </div>
+
+        {/* Sales & Purchase Fields */}
+        <div className="grid grid-cols-2 gap-4">
+          <div className="flex items-center gap-4">
+            <label className="w-40">Selling Price<span className="text-red-500">*</span></label>
+            <div className="flex items-center gap-2">
+              <span>INR</span>
+              <input type="text" className="border p-2 w-full" disabled={!isSalesInfo} />
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <label className="w-40">Cost Price<span className="text-red-500">*</span></label>
+            <div className="flex items-center gap-2">
+              <span>INR</span>
+              <input type="text" className="border p-2 w-full" disabled={!isPurchaseInfo} />
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <label className="w-40">Account<span className="text-red-500">*</span></label>
+            <select className="border p-2 w-full" disabled={!isSalesInfo}><option>Sales</option></select>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <label className="w-40">Account<span className="text-red-500">*</span></label>
+            <select className="border p-2 w-full" disabled={!isPurchaseInfo}><option>Cost of Goods Sold</option></select>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <label className="w-40">Description</label>
+            <textarea className="border p-2 w-full" disabled={!isSalesInfo} />
+          </div>
+
+          <div className="flex items-center gap-4">
+            <label className="w-40">Description</label>
+            <textarea className="border p-2 w-full" disabled={!isPurchaseInfo} />
+          </div>
+
+          <div className="flex items-center gap-4 col-span-2">
+            <label className="w-40">Preferred Vendor</label>
+            <select className="border p-2 w-full" disabled={!isPurchaseInfo}><option></option></select>
           </div>
         </div>
 
-        <div className="track-inventory-fields">
-          <label htmlFor="">
-            <div className="track-inventory-label">
-              <span>Opening Stock</span>
+        {/* Track Inventory Toggle */}
+        {canTrackInventory && (
+          <div className="space-y-4">
+            <div className="flex flex-col">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={trackInventory}
+                  onChange={() => setTrackInventory(!trackInventory)}
+                  className="mr-2"
+                />
+                Track Inventory for this item
+              </label>
+              <small className="text-gray-500 ml-6">
+                You cannot enable/disable inventory tracking once you've created transactions for this item
+              </small>
             </div>
-          </label>
-          <div className="track-inventory-input">
-            <input
-              type="text"
-              id="stock-quantity"
-              className="input-fields"
-              placeholder="Enter stock quantity"
-              disabled={!isInventoryEnabled}
-            />
-          </div>
-        </div>
 
-        <div className="track-inventory-fields">
-          <label htmlFor="">
-            <div className="track-inventory-label">
-              <span>Reorder Point</span>
-            </div>
-          </label>
-          <div className="track-inventory-input">
-            <input
-              type="text"
-              id="product-price"
-              className="input-fields"
-              placeholder="Enter product price"
-              disabled={!isInventoryEnabled}
-            />
+            {trackInventory && (
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex items-center gap-4">
+                  <label className="w-48">Inventory Account<span className="text-red-500">*</span></label>
+                  <select className="border p-2 w-full"><option>Select an account</option></select>
+                </div>
+                <div className="flex items-center gap-4">
+                  <label className="w-48">Inventory Valuation Method<span className="text-red-500">*</span></label>
+                  <select className="border p-2 w-full"><option>Select the valuation method</option></select>
+                </div>
+                <div className="flex items-center gap-4">
+                  <label className="w-48">Opening Stock</label>
+                  <input type="text" className="border p-2 w-full" />
+                </div>
+                <div className="flex items-center gap-4">
+                  <label className="w-48">Opening Stock Rate per Unit</label>
+                  <input type="text" className="border p-2 w-full" />
+                </div>
+                <div className="flex items-center gap-4">
+                  <label className="w-48">Reorder Point</label>
+                  <input type="text" className="border p-2 w-full" />
+                </div>
+              </div>
+            )}
           </div>
-        </div>
-      </div>
-     <div className="second-child">
-     <div className="track-inventory-fields">
-          <label htmlFor="">
-            <div className="track-inventory-label">
-              <span>Inventory Valuation Method</span>
-            </div>
-          </label>
-          <div className="track-inventory-input">
-            <input
-              type="text"
-              id="product-price"
-              className="input-fields"
-              placeholder="Enter product price"
-              disabled={!isInventoryEnabled}
-            />
-          </div>
-        </div>
+        )}
 
-
-        <div className="track-inventory-fields">
-          <label htmlFor="">
-            <div className="track-inventory-label">
-              <span>Opening Stock Rate per Unit</span>
-            </div>
-          </label>
-          <div className="track-inventory-input">
-            <input
-              type="text"
-              id="product-price"
-              className="input-fields"
-              placeholder="Enter product price"
-              disabled={!isInventoryEnabled}
-            />
-          </div>
+        {/* Submit Buttons */}
+        <div className="flex gap-4 mt-6">
+          <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded">Save</button>
+          <button type="button" className="bg-gray-300 px-6 py-2 rounded">Cancel</button>
         </div>
-     </div>
+      </form>
     </div>
-  </div>
-)}
-
-        
-        </div>
-        
-
-        
-      
-        <div className="bottom-bar">
-          <div className='bottom-bar-parent'>
-            <div className="save-btn">
-              <button className="bottom-btn">Save</button>
-            </div>
-          
-            <div className="cancel-btn">
-              <button className="bottom-btn">Cancel</button>
-            </div>
-          </div>
-        </div>
-  </div>
-    </>
   );
-}
+};
+
+export default NewItemForm;
