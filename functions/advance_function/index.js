@@ -43,8 +43,15 @@ app.post('/item', upload, async (req, res) => {
 
 
 // ////////////////    
-       const {price_brackets, package_details, vendors} = req.body;  // JSON data file kuda vechu backend ku anupanum apo na epdi handle panalam....
+       //const {price_brackets, package_details, vendors} = req.body;  // JSON data file kuda vechu backend ku anupanum apo na epdi handle panalam....
 
+       //Added
+        let {price_brackets, package_details, vendors} = req.body;
+        price_brackets = JSON.parse(req.body.price_brackets);
+        package_details = JSON.parse(req.body.package_details);
+        vendors = JSON.parse(req.body.vendors);
+
+       //Ended
 
         const itemData = {
             name: req.body.name,
@@ -96,6 +103,8 @@ app.post('/item', upload, async (req, res) => {
         // Insert Price Brackets 
         if (price_brackets && price_brackets.length > 0) {
             console.log("111");
+            console.log("Length: "+price_brackets.length);
+            console.log("[0]: "+price_brackets[0]+" [1]: "+price_brackets[1]);
             const priceBracketsData = price_brackets.map(pb => ({
                 item_id: itemId,
                 start_quantity: pb.start_quantity,
@@ -821,7 +830,7 @@ app.get('/items', async (req, res) => {
         // const documentsTable = datastore.table("Documents");
 
         // Get all items using ZCQL for better query capabilities
-        const itemsQuery = `SELECT * FROM Items`;
+        const itemsQuery = `SELECT * FROM Items LIMIT 10`;
         const itemsResult = await zcql.executeZCQLQuery(itemsQuery);
         const items = itemsResult.map(item => item.Items);
 

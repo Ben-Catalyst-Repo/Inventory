@@ -34,6 +34,7 @@ function App() {
             <Route path="/purchase/purchaseOrder" element={<PurchaseOrders />} />
             <Route path="/purchase/bills" element={<Bills />} />
             <Route path="/allitems" element={<AllItems />} />
+            <Route path="/itemgroup/new" element={<ItemGroupHP />} />
           </Routes>
         </div>
 
